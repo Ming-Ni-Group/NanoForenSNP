@@ -1,5 +1,5 @@
 # ForenSNP
-SNP genotype caller (based on [iSNV](https://github.com/generality/iSNV-calling)) for ForenSeq Kit. It can be applied for the reads processed by ForenSeq Kit and sequenced by NGS platform or Nanopore platform. We've already evaluated the accuracy on 94 identity SNPs from 33 samples. We build it with a snakemake file which will make it easy to install and use. 
+SNP genotype caller (based on [iSNV](https://github.com/generality/iSNV-calling)) for ForenSeq Kit. It can be applied for the reads processed by ForenSeq Kit and sequenced by NGS platform or Nanopore platform. We've already evaluated the accuracy on 94 identity SNPs from 33 samples. We build it with python and make it easy to install and use. 
 
 
 ## Features
@@ -7,30 +7,72 @@ SNP genotype caller (based on [iSNV](https://github.com/generality/iSNV-calling)
 2. Supporting from NGS/Nanopore platform;
 
 
-## Workflow
+
+## Installation
+
+We recommend you to use `conda` to build the ForenSNP environment.
+
+1. Download the code from our repo:
+
+```
+git clone https://github.com/Ming-Ni-Lab/ForenSNP.git
+```
+
+2. Build the environment:
+
+
+```bash
+git clone https://github.com/Ming-Ni-Lab/ForenSNP.git
+cd ForenSNP
+conda env create -f env.yml
+```
+
+3. Test
+
+```
+conda activate ForenSNP
+python ForenSNP.py getgeno -h
+conda deactivate
+```
 
 
 
 ## Usage
 
-```bash
-ForenSNP=[PATH_TO_ForenSNP]
+### Quick start
 
-python $ForenSNP/ForenSNP.py getgeno --ref $PATH_TO_REFERENCE_GENOME --snp $ForenSNP/config_file/rsID.txt --bam $PATH_TO_BAMFILE --id $SAMPLE_ID
-```
 
-## Installation
-
-We recommand you to use conda to build the vitual enviroment to run our SNP caller.
 
 ```bash
-cd $DIR_TO_SAVE_THE_PROGRAME
-conda env create -f environment.yml
-git clone XXXX
+conda activate ForenSNP
 
+FORENSNP="[PATH_TO_FORENSNP]"
+
+## required arguments
+REF_GENOME="[PATH_TO_REFERENCE_GENOME]"
+BAM_FILE="[PATH_TO_BAM_FILE]"
+SAMPLE_NAME="[SAMPLE_NAME]"
+
+python $FORENSNP/ForenSNP.py getgeno \
+--ref $REF_GENOME \
+--snp $FORENSNP/config_file/rsID.txt \
+--bam $BAM_FILE \
+--id $SAMPLE_NAME
+
+cd output/$SAMPLE_NAME
 ```
 
-1. create a new conda enviroment
-```bash
-conda create -n 
-```
+
+
+### Learn more
+
+
+
+
+
+
+
+## Contributing
+
+The ForenSNP is based on the EBOV intrahost single nucleotide variation ([iSNV](https://github.com/generality/iSNV-calling])) calling which is created by Ming Ni.  
+
