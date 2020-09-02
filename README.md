@@ -10,9 +10,14 @@ SNP genotype caller (based on [iSNV](https://github.com/generality/iSNV-calling)
 ## Workflow
 
 
+
 ## Usage
 
+```bash
+ForenSNP=[PATH_TO_ForenSNP]
 
+python $ForenSNP/ForenSNP.py getgeno --ref $PATH_TO_REFERENCE_GENOME --snp $ForenSNP/config_file/rsID.txt --bam $PATH_TO_BAMFILE --id $SAMPLE_ID
+```
 
 ## Installation
 
