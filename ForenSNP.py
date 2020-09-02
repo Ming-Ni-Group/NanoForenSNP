@@ -15,7 +15,7 @@ import pathlib
 import argparse
 
 ## local pack
-from scripts import myGenotypeCaller
+from forensnp_scripts import myGenotypeCaller
 
 def run_mpileup(samtools_path, ref_path, snp_bed_path, bam_file_path, output_pileup):
     cmd = "%s mpileup -f %s -l %s %s -o %s" % (samtools_path, ref_path, snp_bed_path, bam_file_path, output_pileup)
@@ -24,7 +24,9 @@ def run_mpileup(samtools_path, ref_path, snp_bed_path, bam_file_path, output_pil
     return
 
 def run_isnv(perl_path, output_pileup, output_ntfreq):
-    cmd = "%s ./scripts/myISNV.pl -in %s -out %s" % (perl_path, output_pileup, output_ntfreq)
+    
+    isnv_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'forensnp_scripts/myISNV.pl')
+    cmd = "%s %s -in %s -out %s" % (perl_path, isnv_path, output_pileup, output_ntfreq)
     sys.stdout.write('## Running command: `%s`\n' % cmd)
     os.system(cmd)
     return
@@ -66,6 +68,9 @@ def getgeno(args):
 
 
 if __name__ == '__main__':
+    
+    
+    
     parser = argparse.ArgumentParser(description='SNP genotype caller for data from forenseq kit.', 
                                      usage='''python ForenSNP.py <command> [<args>]
 
@@ -83,7 +88,6 @@ Available commands are:
     getgeno_parser.add_argument('--snp', required = True, help='path to the snp information file, see the USAGE for format', default = None)
     getgeno_parser.add_argument('--bam', required = True, help='path to the bam file', default = None)
     getgeno_parser.add_argument('--id', required = True, help='sample name for output file', default = 'sample')
-    
     
     
     ## optional
