@@ -48,7 +48,7 @@ def getgeno(args):
     sampleID   = args.id
     
     ## out dir
-    output_dir = './output/%s' % sampleID
+    output_dir = './forensnp_output/%s' % sampleID
     pathlib.Path(output_dir).mkdir(parents=True, exist_ok=True)
     
     ## out files
