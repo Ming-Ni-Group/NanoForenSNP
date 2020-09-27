@@ -42,7 +42,7 @@ def getgeno(args):
     bam_file_path = args.bam
     
     ## parameter set
-    valid_cutoff  = args.cutoff
+    homo_cutoff  = args.cutoff
     
     ## input
     sampleID   = args.id
@@ -62,7 +62,7 @@ def getgeno(args):
     ## work flow
     run_mpileup(samtools_path, ref_path, snp_bed_path, bam_file_path, output_pileup)
     run_isnv(perl_path, output_pileup, output_ntfreq)
-    myGenotypeCaller.get_alleles(output_ntfreq, snp_bed_path, output_genotype, valid_cutoff)
+    myGenotypeCaller.get_alleles(sampleID, output_ntfreq, snp_bed_path, output_genotype, homo_cutoff)
     
     return
 
@@ -98,7 +98,7 @@ Available commands are:
     getgeno_parser.add_argument('--SAMTOOLS', required = False, help='path to samtools', default = 'samtools')
     getgeno_parser.add_argument('--PERL', required = False, help='path to perl', default = 'perl')
     getgeno_parser.add_argument('--cutoff', required = False, 
-                                help='the cutoff for validation of genotypes; recommand range 0.1-0.15 for nanopore data', default = 0.1)
+                                help='the cutoff for homo/heterozygous; recommand range 0.1-0.15 for nanopore data', default = 0.1)
  
     getgeno_parser.set_defaults(func=getgeno)
 

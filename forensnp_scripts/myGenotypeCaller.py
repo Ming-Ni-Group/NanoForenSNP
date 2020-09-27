@@ -37,7 +37,7 @@ def func_annotate_rs_into_ntfreq(ntfreq_file, rs_ref_path):
     return ntfreq_dat
 
 
-def get_allele_each_row(x, valid_cutoff, cov_cutoff=30):
+def get_allele_each_row(x, homo_cutoff, cov_cutoff=10):
     coverage= x['cov']
     ratio_A = float(x['A']) / coverage
     ratio_G = float(x['G']) / coverage
@@ -51,11 +51,11 @@ def get_allele_each_row(x, valid_cutoff, cov_cutoff=30):
     if coverage < cov_cutoff:
         return [pd.NA, pd.NA, coverage, INFO]
 
-    if freq_df.loc[freq_df['ratio'] > valid_cutoff, :].shape[0] == 1:
+    if freq_df.loc[freq_df['ratio'] > homo_cutoff, :].shape[0] == 1:
         allele1 = freq_df['allele'].values[0]
         allele2 = allele1
 
-    elif freq_df.loc[freq_df['ratio'] > valid_cutoff, :].shape[0] == 2:
+    elif freq_df.loc[freq_df['ratio'] > homo_cutoff, :].shape[0] == 2:
         allele1 = freq_df['allele'].values[0]
         allele2 = freq_df['allele'].values[1]
 
@@ -67,7 +67,7 @@ def get_allele_each_row(x, valid_cutoff, cov_cutoff=30):
 
 
 
-def get_alleles(output_ntfreq, snp_bed_path, output_genotype, valid_cutoff):
+def get_alleles(sampleID, output_ntfreq, snp_bed_path, output_genotype, homo_cutoff):
 
 
 
@@ -76,10 +76,11 @@ def get_alleles(output_ntfreq, snp_bed_path, output_genotype, valid_cutoff):
     ntfreq_df['cov'] = ntfreq_df.apply(lambda x: func_cal_coverage(x), axis=1)
     
     
-    alleles_series = ntfreq_df.apply(lambda x: get_allele_each_row(x, valid_cutoff), axis=1)
+    alleles_series = ntfreq_df.apply(lambda x: get_allele_each_row(x, homo_cutoff), axis=1)
     alleles_df = pd.DataFrame(alleles_series.tolist(), columns=['allele1', 'allele2', 'totalCoverage', 'INFOs'])
 
     raw_output_df = pd.concat([ntfreq_df, alleles_df], axis=1)
     output_df = raw_output_df.loc[:, ['#chr', 'pos', 'rs', 'ref', 'allele1', 'allele2', 'totalCoverage', 'INFOs']]
+    output_df['SampleID'] = sampleID
     output_df.to_csv(output_genotype, index=None, na_rep="NA")
     return 
