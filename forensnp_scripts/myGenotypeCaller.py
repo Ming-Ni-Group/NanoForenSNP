@@ -37,7 +37,7 @@ def func_annotate_rs_into_ntfreq(ntfreq_file, rs_ref_path):
     return ntfreq_dat
 
 
-def get_allele_each_row(x, valid_cutoff):
+def get_allele_each_row(x, valid_cutoff, cov_cutoff=30):
     coverage= x['cov']
     ratio_A = float(x['A']) / coverage
     ratio_G = float(x['G']) / coverage
@@ -47,6 +47,9 @@ def get_allele_each_row(x, valid_cutoff):
     freq_df = pd.DataFrame([['A', ratio_A], ['G', ratio_G], ['C', ratio_C], ['T', ratio_T]], columns=['allele', 'ratio'])
     freq_df.sort_values(by = 'ratio', ascending = False, inplace=True)
     INFO    = "".join(["{}:{:.2%};".format(i[0], i[1]) for i in freq_df.values.tolist()])
+
+    if coverage < cov_cutoff:
+        return [pd.NA, pd.NA, coverage, INFO]
 
     if freq_df.loc[freq_df['ratio'] > valid_cutoff, :].shape[0] == 1:
         allele1 = freq_df['allele'].values[0]
@@ -78,5 +81,5 @@ def get_alleles(output_ntfreq, snp_bed_path, output_genotype, valid_cutoff):
 
     raw_output_df = pd.concat([ntfreq_df, alleles_df], axis=1)
     output_df = raw_output_df.loc[:, ['#chr', 'pos', 'rs', 'ref', 'allele1', 'allele2', 'totalCoverage', 'INFOs']]
-    output_df.to_csv(output_genotype, index=None)
+    output_df.to_csv(output_genotype, index=None, na_rep="NA")
     return 
