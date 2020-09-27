@@ -39,10 +39,12 @@ def func_annotate_rs_into_ntfreq(ntfreq_file, rs_ref_path):
 
 def get_allele_each_row(x, homo_cutoff, cov_cutoff=10):
 
+    coverage= x['cov']
+
     if coverage == 0:
         return [pd.NA, pd.NA, coverage, 'no-coverage']
 
-    coverage= x['cov']
+    
     ratio_A = float(x['A']) / coverage
     ratio_G = float(x['G']) / coverage
     ratio_C = float(x['C']) / coverage
