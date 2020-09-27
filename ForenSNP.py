@@ -46,9 +46,12 @@ def getgeno(args):
     
     ## input
     sampleID   = args.id
+
+    ## output
+    subdir     = args.subdir
     
     ## out dir
-    output_dir = './forensnp_output/%s' % sampleID
+    output_dir = './forensnp_output/%s' % subdir
     pathlib.Path(output_dir).mkdir(parents=True, exist_ok=True)
     
     ## out files
@@ -88,6 +91,7 @@ Available commands are:
     getgeno_parser.add_argument('--snp', required = True, help='path to the snp information file, see the USAGE for format', default = None)
     getgeno_parser.add_argument('--bam', required = True, help='path to the bam file', default = None)
     getgeno_parser.add_argument('--id', required = True, help='sample name for output file', default = 'sample')
+    getgeno_parser.add_argument('--subdir', required = True, help='subdir', default = 'subdir')
     
     
     ## optional
