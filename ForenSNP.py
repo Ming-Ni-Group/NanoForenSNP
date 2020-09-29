@@ -91,10 +91,11 @@ Available commands are:
     getgeno_parser.add_argument('--snp', required = True, help='path to the snp information file, see the USAGE for format', default = None)
     getgeno_parser.add_argument('--bam', required = True, help='path to the bam file', default = None)
     getgeno_parser.add_argument('--id', required = True, help='sample name for output file', default = 'sample')
-    getgeno_parser.add_argument('--subdir', required = True, help='subdir', default = 'subdir')
+    
     
     
     ## optional
+    getgeno_parser.add_argument('--subdir', required = False, help='subdir', default = '')
     getgeno_parser.add_argument('--SAMTOOLS', required = False, help='path to samtools', default = 'samtools')
     getgeno_parser.add_argument('--PERL', required = False, help='path to perl', default = 'perl')
     getgeno_parser.add_argument('--cutoff', required = False, 
