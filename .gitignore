@@ -2,4 +2,5 @@
 .ipynb_checkpoints
 test
 __pycache__
-
+forensnp_scripts/__pycache__
+output/*
