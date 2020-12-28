@@ -1,4 +1,4 @@
-# ForenSNP
+# ForenSNP v0.0.1
 SNP genotype caller (based on [iSNV](https://github.com/generality/iSNV-calling)) for ForenSeq Kit. It can be applied for the reads processed by ForenSeq Kit and sequenced by NGS platform or Nanopore platform. We've already evaluated the accuracy on 94 identity SNPs from 33 samples. We build it with python and make it easy to install and use. 
 
 
