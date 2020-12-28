@@ -22,7 +22,6 @@ git clone https://github.com/Ming-Ni-Lab/ForenSNP.git
 
 
 ```bash
-git clone https://github.com/Ming-Ni-Lab/ForenSNP.git
 cd ForenSNP
 conda env create -f env.yml
 ```
