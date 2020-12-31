@@ -2,7 +2,7 @@
 """
 
 
-    - ForenRepeat ver0.1
+    - NanoForenSNP ver0.0.1
     - Written by Ren Zilin; zilin.ren@outlook.com
     - For reads from the forenseq kit and nanopore platform 
 
