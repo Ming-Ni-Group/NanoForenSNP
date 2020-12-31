@@ -50,7 +50,10 @@ def getgeno(args):
     subdir     = args.subdir
     
     ## out dir
-    output_dir = './output/%s' % subdir
+    if subdir == "":
+    	output_dir = "./output"
+    else:
+	    output_dir = './output/%s' % subdir
     pathlib.Path(output_dir).mkdir(parents=True, exist_ok=True)
     
     ## out files
