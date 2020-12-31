@@ -1,4 +1,5 @@
 *.ipynb
+*vscode
 .ipynb_checkpoints
 test
 __pycache__

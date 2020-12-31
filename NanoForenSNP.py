@@ -15,7 +15,7 @@ import pathlib
 import argparse
 
 ## local pack
-from forensnp_scripts import myGenotypeCaller
+from myScripts import myGenotypeCaller
 
 def run_mpileup(samtools_path, ref_path, snp_bed_path, bam_file_path, output_pileup):
     cmd = "%s mpileup -f %s -l %s %s -o %s" % (samtools_path, ref_path, snp_bed_path, bam_file_path, output_pileup)
@@ -24,8 +24,7 @@ def run_mpileup(samtools_path, ref_path, snp_bed_path, bam_file_path, output_pil
     return
 
 def run_isnv(perl_path, output_pileup, output_ntfreq):
-    
-    isnv_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'forensnp_scripts/myISNV.pl')
+    isnv_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'myScripts/myISNV.pl')
     cmd = "%s %s -in %s -out %s" % (perl_path, isnv_path, output_pileup, output_ntfreq)
     sys.stdout.write('## Running command: `%s`\n' % cmd)
     os.system(cmd)
@@ -51,7 +50,7 @@ def getgeno(args):
     subdir     = args.subdir
     
     ## out dir
-    output_dir = './forensnp_output/%s' % subdir
+    output_dir = './output/%s' % subdir
     pathlib.Path(output_dir).mkdir(parents=True, exist_ok=True)
     
     ## out files
@@ -75,7 +74,7 @@ if __name__ == '__main__':
     
     
     parser = argparse.ArgumentParser(description='SNP genotype caller for data from forenseq kit.', 
-                                     usage='''python ForenSNP.py <command> [<args>]
+                                     usage='''python NanoForenSNP.py <command> [<args>]
 
 Available commands are:    
     getgeno    simple genotype caller based on iSNV
