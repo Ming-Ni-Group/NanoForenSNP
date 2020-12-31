@@ -51,7 +51,7 @@ REF_GENOME="[PATH_TO_REFERENCE_GENOME]"
 BAM_FILE="[PATH_TO_BAM_FILE]"
 SAMPLE_NAME="[SAMPLE_NAME]"
 
-python $NanoForenSNP/ForenSNP.py getgeno \
+python $NanoForenSNP/NanoForenSNP.py getgeno \
 --ref $REF_GENOME \
 --snp $NanoForenSNP/config_file/rsID.txt \
 --bam $BAM_FILE \
