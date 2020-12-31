@@ -23,7 +23,7 @@ git clone https://github.com/Ming-Ni-Lab/NanoForenSNP.git
 ```bash
 cd NanoForenSNP
 conda env create -f env.yml
-conda activate NanoForenSNP
+conda activate nanoforensnp
 ```
 
 3. Test
@@ -42,7 +42,7 @@ python ../NanoForenSNP.py getgeno --ref hg19/hg19.fa --snp config_file/rsIDtest.
 ### Quick start
 
 ```bash
-conda activate NanoForenSNP
+conda activate nanoforensnp
 
 NanoForenSNP="[PATH_TO_NanoForenSNP]"
 
