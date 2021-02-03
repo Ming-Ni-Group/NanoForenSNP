@@ -180,13 +180,13 @@ sub fre_stat{
 	my $cTPos = $seq =~ tr/T//;
 	my $cTNeg = $seq =~ tr/t//;
 	my $strandedInfo = '';
-	if ($ref eq 'A'){
+	if ($ref eq 'A' || $ref eq 'a'){
 		$cAPos = $cRefPos; $cANeg = $cRefNeg;
-	} elsif ($ref eq 'G'){
+	} elsif ($ref eq 'G' || $ref eq 'g'){
 		$cGPos = $cRefPos; $cGNeg = $cRefNeg;
-	} elsif ($ref eq 'C'){
+	} elsif ($ref eq 'C' || $ref eq 'c'){
 		$cCPos = $cRefPos; $cCNeg = $cRefNeg;
-	} elsif ($ref eq 'T'){
+	} elsif ($ref eq 'T' || $ref eq 't'){
 		$cTPos = $cRefPos; $cTNeg = $cRefNeg;
 	}
 	$strandedInfo .= $cAPos.'/'.$cANeg."\t";
