@@ -46,16 +46,12 @@ python ../nanoforensnp.py getgeno --ref ../config_file/snpRef.fa --snp ../config
 ```bash
 conda activate nanoforensnp
 
-NanoForenSNP="[PATH_TO_NanoForenSNP]"
+nanoforensnp="[PATH_TO_NanoForenSNP]"
 
 ## required arguments
-REF_GENOME="[PATH_TO_REFERENCE_GENOME]"
-BAM_FILE="[PATH_TO_BAM_FILE]"
-SAMPLE_NAME="[SAMPLE_NAME]"
-
-python $NanoForenSNP/nanoforensnp.py getgeno \
---ref $NanoForenSNP/config_file/snpRef.fa \
---snp $NanoForenSNP/config_file/config.txt \
+python $nanoforensnp/nanoforensnp.py getgeno \
+--ref $nanoforensnp/config_file/snpRef.fa \
+--snp $nanoforensnp/config_file/config.txt \
 --bam $BAM_FILE \
 --id $SAMPLE_NAME
 
