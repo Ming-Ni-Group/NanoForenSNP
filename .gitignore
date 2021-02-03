@@ -3,6 +3,5 @@
 *ipynb_checkpoints*
 __pycache__
 forensnp_scripts/__pycache__/*
-*.fa
-*.fa.*
+
 

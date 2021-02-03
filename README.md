@@ -31,8 +31,7 @@ conda activate nanoforensnp
 ```
 cd test
 
-## the hg19.fa is not stored in the hg19/
-python ../NanoForenSNP.py getgeno --ref hg19/hg19.fa --snp config_file/rsIDtest.txt --id p1b01test --bam bamfile/barcode01.test.bam
+python ../nanoforensnp.py getgeno --ref ../config_file/snpRef.fa --snp ../config_file/config.txt --id p1b01test --bam bamfile/barcode01.test.bam
 ```
 
 
@@ -52,8 +51,8 @@ BAM_FILE="[PATH_TO_BAM_FILE]"
 SAMPLE_NAME="[SAMPLE_NAME]"
 
 python $NanoForenSNP/NanoForenSNP.py getgeno \
---ref $REF_GENOME \
---snp $NanoForenSNP/config_file/rsID.txt \
+--ref $NanoForenSNP/config_file/snpRef.fa \
+--snp $NanoForenSNP/config_file/config.txt \
 --bam $BAM_FILE \
 --id $SAMPLE_NAME
 

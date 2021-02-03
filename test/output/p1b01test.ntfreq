@@ -1,2 +1,0 @@
-#chr	pos	ref	dep(mpileup)	dep(-indel)	ntfreqPatt	A	G	C	T	tot(Q20)	Fa	Fg	Fc	Ft	A5'/3'	G5/3	C5/3	T5/3	A5'(na_if_dep<5)	G5	C5	T5	entropy
-chr1	239881926	A	154	153	A:68;G:60;C:0;T:0;tot:128	68	60	0	0	128	0.5312	0.4687	0	0	16/52	14/46	0/0	0/0	0.235	0.233	na	na	0.691223266570402

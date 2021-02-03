@@ -1,2 +1,0 @@
-#chr,pos,rs,ref,allele1,allele2,totalCoverage,INFOs,A+,A-,G+,G-,C+,C-,T+,T-,SampleID
-chr1,239881926,rs891700,A,A,G,128,A:53.12%;G:46.88%;C:0.00%;T:0.00%;,16,52,14,46,0,0,0,0,p1b01test

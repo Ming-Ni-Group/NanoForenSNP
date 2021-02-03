@@ -47,7 +47,7 @@ def getgeno(args):
     sampleID   = args.id
 
     ## output
-    subdir     = args.subdir
+    subdir     = args.id
     
     ## out dir
     if subdir == "":
@@ -97,7 +97,7 @@ Available commands are:
     
     
     ## optional
-    getgeno_parser.add_argument('--subdir', required = False, help='subdir', default = '')
+    # getgeno_parser.add_argument('--subdir', required = False, help='subdir', default = '')
     getgeno_parser.add_argument('--SAMTOOLS', required = False, help='path to samtools', default = 'samtools')
     getgeno_parser.add_argument('--PERL', required = False, help='path to perl', default = 'perl')
     getgeno_parser.add_argument('--cutoff', required = False, 
