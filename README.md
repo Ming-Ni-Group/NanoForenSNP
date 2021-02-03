@@ -30,8 +30,11 @@ conda activate nanoforensnp
 
 ```
 cd test
+minimap2 -ax map-ont ../config_file/snpRef.fa alignment/barcode01.part.fastq | samtools view -S -b | samtools sort > ./alignment/p1b01.test.bam
 
-python ../nanoforensnp.py getgeno --ref ../config_file/snpRef.fa --snp ../config_file/config.txt --id p1b01test --bam bamfile/barcode01.test.bam
+samtools index ./alignment/p1b01.test.bam
+
+python ../nanoforensnp.py getgeno --ref ../config_file/snpRef.fa --snp ../config_file/config.txt --id p1b01test --bam alignment/p1b01.test.bam
 ```
 
 
@@ -50,7 +53,7 @@ REF_GENOME="[PATH_TO_REFERENCE_GENOME]"
 BAM_FILE="[PATH_TO_BAM_FILE]"
 SAMPLE_NAME="[SAMPLE_NAME]"
 
-python $NanoForenSNP/NanoForenSNP.py getgeno \
+python $NanoForenSNP/nanoforensnp.py getgeno \
 --ref $NanoForenSNP/config_file/snpRef.fa \
 --snp $NanoForenSNP/config_file/config.txt \
 --bam $BAM_FILE \
