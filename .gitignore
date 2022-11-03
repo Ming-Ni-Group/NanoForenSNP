@@ -3,5 +3,6 @@
 *ipynb_checkpoints*
 __pycache__
 forensnp_scripts/__pycache__/*
+config_file/raw472/*
 
 

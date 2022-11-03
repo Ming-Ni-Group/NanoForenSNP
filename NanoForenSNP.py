@@ -11,7 +11,7 @@
 
 import os
 import sys
-import pathlib
+from pathlib import Path
 import argparse
 
 ## local pack
@@ -43,23 +43,15 @@ def getgeno(args):
     ## parameter set
     homo_cutoff  = args.cutoff
     
-    ## input
-    sampleID   = args.id
-
-    ## output
-    subdir     = args.id
-    
     ## out dir
-    if subdir == "":
-    	output_dir = "./output"
-    else:
-	    output_dir = './output/%s' % subdir
-    pathlib.Path(output_dir).mkdir(parents=True, exist_ok=True)
+    outdir = Path(args.out)
+    Path(outdir.parent).mkdir(parents=True, exist_ok=True)
     
+    sampleID = outdir.stem
     ## out files
-    output_pileup = '%s/%s.mpileup' % (output_dir, sampleID)
-    output_ntfreq = '%s/%s.ntfreq'  % (output_dir, sampleID)
-    output_genotype = '%s/%s.csv'   % (output_dir, sampleID)
+    output_pileup = '%s.mpileup' % (outdir, )
+    output_ntfreq = '%s.ntfreq'  % (outdir, )
+    output_genotype = '%s.csv'   % (outdir, )
     
     ## work flow
     run_mpileup(samtools_path, ref_path, snp_bed_path, bam_file_path, output_pileup)
@@ -92,8 +84,8 @@ Available commands are:
     getgeno_parser.add_argument('--ref', required = True, help='path to genome reference', default = None)
     getgeno_parser.add_argument('--snp', required = True, help='path to the snp information file, see the USAGE for format', default = None)
     getgeno_parser.add_argument('--bam', required = True, help='path to the bam file', default = None)
-    getgeno_parser.add_argument('--id', required = True, help='sample name for output file', default = 'sample')
-    
+    # getgeno_parser.add_argument('--id',  required = True, help='sample name for output file', default = 'sample')
+    getgeno_parser.add_argument('--out', required = True, help='outdir')
     
     
     ## optional
