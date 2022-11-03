@@ -28,18 +28,31 @@ conda activate nanoforensnp
 
 3. Test
 
+We provide a script named `run.sh <fastq-file> <output-dir>` to perform nanoforensnp. Before running, users need to speify the path of some files.
+Here is the example.
+
+```bash
+#!/bin/bash
+
+fastq=$1
+oudir=$2
+
+fullname=${fastq##*/}
+stem=${fullname%.*}
+bam=$stem.bam
+
+refer=<nanoforensnp-dir>/config_file/ref_472.fa
+snpnb=<nanoforensnp-dir>/config_file/ref_472.cfg
+
+mkdir -p $oudir/alignment
+minimap2 -ax map-ont ${refer} ${fastq} | samtools view -S -b | samtools sort > $oudir/alignment/${bam}
+samtools index $oudir/alignment/${bam}
+
+python <nanoforensnp-dir>/NanoForenSNP.py getgeno --ref ${refer} --snp ${snpnb} --bam $oudir/alignment/${bam} --out $oudir/snp_out/${stem}
 ```
-cd test
-minimap2 -ax map-ont ../config_file/snpRef.fa alignment/barcode01.part.fastq | samtools view -S -b | samtools sort > ./alignment/p1b01.test.bam
+----------------------------
 
-samtools index ./alignment/p1b01.test.bam
-
-python ../nanoforensnp.py getgeno --ref ../config_file/snpRef.fa --snp ../config_file/config.txt --id p1b01test --bam alignment/p1b01.test.bam
-```
-
-
-
-## Usage
+## python script (old version)
 
 ### Quick start
 
