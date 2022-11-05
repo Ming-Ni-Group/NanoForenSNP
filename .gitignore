@@ -4,5 +4,6 @@
 __pycache__
 forensnp_scripts/__pycache__/*
 config_file/raw472/*
+test_data/*
 
 
